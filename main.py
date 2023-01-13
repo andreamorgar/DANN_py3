@@ -16,12 +16,12 @@ target_dataset_name = 'mnist_m'
 source_image_root = os.path.join('dataset', source_dataset_name)
 target_image_root = os.path.join('dataset', target_dataset_name)
 model_root = 'models'
-cuda = True
+cuda = torch.cuda.is_available()
 cudnn.benchmark = True
 lr = 1e-3
 batch_size = 128
 image_size = 28
-n_epoch = 100
+n_epoch = 2 #100
 
 manual_seed = random.randint(1, 10000)
 random.seed(manual_seed)
@@ -52,7 +52,7 @@ dataloader_source = torch.utils.data.DataLoader(
     dataset=dataset_source,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=8)
+    num_workers=0) #8 
 
 train_list = os.path.join(target_image_root, 'mnist_m_train_labels.txt')
 
@@ -66,7 +66,7 @@ dataloader_target = torch.utils.data.DataLoader(
     dataset=dataset_target,
     batch_size=batch_size,
     shuffle=True,
-    num_workers=8)
+    num_workers=0) #8
 
 # load model
 

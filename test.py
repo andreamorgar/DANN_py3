@@ -12,7 +12,7 @@ def test(dataset_name):
     model_root = 'models'
     image_root = os.path.join('dataset', dataset_name)
 
-    cuda = True
+    cuda = torch.cuda.is_available()
     cudnn.benchmark = True
     batch_size = 128
     image_size = 28
@@ -51,7 +51,7 @@ def test(dataset_name):
         dataset=dataset,
         batch_size=batch_size,
         shuffle=False,
-        num_workers=8
+        num_workers=0 #8
     )
 
     """ test """
